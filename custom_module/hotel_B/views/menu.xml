@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<odoo>
+
+   <menuitem id="menu_hotel_root"
+             name="Hotel"
+             web_icon="hotel_B,static/description/hotel.png"
+             sequence="0"/>
+
+   <menuitem id="menu_guest_master"
+             name="Guest Details"
+             parent="menu_hotel_root"
+             sequence="0"/>
+
+   <menuitem id="menu_appointment_master"
+             name="Appointments"
+             parent="menu_hotel_root"
+             sequence="0"/>
+
+   <menuitem id="menu_configuration"
+             name="Configurations"
+             parent="menu_hotel_root"
+             sequence="10"/>
+
+   <menuitem id="menu_cancel_appointment"
+             name="Cancellation"
+             parent="menu_appointment_master"
+             action="action_cancel_appointment"
+             sequence="20"/>
+
+
+
+
+</odoo>

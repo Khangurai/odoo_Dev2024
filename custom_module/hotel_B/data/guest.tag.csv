@@ -1,0 +1,4 @@
+id,name,active
+guest_tag_ceo,CEO,True
+guest_tag_vvip,VVIP,False
+guest_tag_mrs,Mrs,True

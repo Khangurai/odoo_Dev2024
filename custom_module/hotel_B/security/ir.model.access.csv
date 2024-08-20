@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.hotel.guest,access_hotel_guest,hotel_B.model_hotel_guest,base.group_user,1,1,1,1
+access.hotel.appointment,access_hotel_appointment,hotel_B.model_hotel_appointment,base.group_user,1,1,1,1
+access.appointment.items.lines,access_appointment_items_lines,hotel_B.model_appointment_items_lines,base.group_user,1,1,1,1
+access.guest.tag,access_patient_tag,hotel_B.model_guest_tag,base.group_user,1,1,1,1
+access.cancel.appointment.wizard,access_cancel_appointment_wizard,hotel_B.model_cancel_appointment_wizard,base.group_user,1,1,1,1
+access.playground.item.wizard,access_playground_item_wizard,hotel_B.model_playground_item,base.group_user,1,1,1,1
+

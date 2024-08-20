@@ -1,0 +1,164 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<odoo>
+     <record id="view_hotel_appointment_activity" model="ir.ui.view">
+            <field name="name">hotel.appointment.activity</field>
+            <field name="model">hotel.appointment</field>
+            <field name="arch" type="xml">
+                <activity string="Appointments">
+                    <field name="guest_id"/>
+                    <field name="ref"/>
+                    <templates>
+                        <div t-name="activity-box">
+                            <img t-att-src="activity_image('hotel.guest', 'image', record.guest_id.raw_value)" t-att-title="record.guest_id.value"/>
+                            <div>
+                                <field name="ref" display="full"/>
+                            </div>
+                        </div>
+                    </templates>
+
+                </activity>
+            </field>
+     </record>
+
+     <record id="view_hotel_appointment_tree" model="ir.ui.view">
+            <field name="model">hotel.appointment.tree</field>
+            <field name="model">hotel.appointment</field>
+            <field name="arch" type="xml">
+                <tree sample = "1">
+                    <field name = "sequence"/>
+                    <field name = "guest_id"/>
+                    <field name = "ref" optional = "hide"/>
+                    <field name = "receptionist_id" widget = "many2one_avatar_user"/>
+                    <field name = "booking_date" optional ="show"/>
+                    <field name = "activity_ids" widget="list_activity"/>
+                    <field name = "appointment_time"/>
+                    <field name = "gender" optional = "hide"/>
+                    <field name = "state"
+                           decoration-success="state=='done'"
+                           decoration-info="state=='confirm'"
+                           decoration-danger="state=='cancel'"
+                           decoration-muted="state=='draft'"
+                           widget = "badge"/>
+                </tree>
+            </field>
+     </record>
+
+     <record id="view_hotel_appointment_form" model="ir.ui.view">
+            <field name="model">hotel.appointment.form</field>
+            <field name="model">hotel.appointment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name = "action_draft" string = "Reset to Draft" type = "object" states = "cancel"/>
+                        <button name = "action_confirm" string = " Draft Confirm" class = "oe_highlight" type = "object" states = "draft"/>
+                        <button name = "action_done" string = "Mark As Done" class = "oe_highlight" type = "object" states = "confirm,draft"/>
+<!--                        <button name = "action_cancel" string = "Cancel" type = "object" states = "confirm,done"/>-->
+                        <button name = "%(hotel_B.action_cancel_appointment)d" string = "Cancel"
+                                context="{'default_reason':'Test', 'hide_appointment': 1 }"
+                                type = "action" states = "confirm,done"/>
+                        <!--options = "{'clickable': '1'}" -->
+                        <field name = "state" widget = "statusbar" nolabel = "1"
+                        statusbar_visible="draft,confirm,done"/>
+                        />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="sequence" class="o_field_text"/>
+                            </h1>
+                        </div>
+                        <div class = "oe_title">
+                            <h1>
+                                <field name = "priority" widget = "priority" class = "mr-3"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="guest_id" required ="1"/>
+                                <field name="ref" />
+                                <field name="receptionist_id" widget = "many2one_avatar"/>
+                                <field name="booking_date" help="Date of Booking."/>
+                            </group>
+                            <group>
+                                <field name="hide_sales_price" groups="base.group_no_one"/>
+                                <field name="appointment_time"/>
+                                <field name="gender"/>
+                                <button name="action_test" string="Object Button" type="object"
+                                        help="A message will be printed in the log."
+                                        groups="base.group_no_one"
+                                        confirm="Are you sure to execute python code?"
+                                        class="oe_highlight"/>
+                                <button name="%(hotel_B.action_hotel_guest)d" string="Action Button"
+                                        help="On clicking this button, you'll be redirected to guest records."
+                                        groups="base.group_no_one"
+
+                                        confirm="Are you sure to open the guest action?"                                       type="action" class="oe_highlight"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Note" name = "note">
+                                <field name="note" placeholder = "Please enter your order."
+                                options="{'resizable': true}"/>
+                            </page>
+
+                            <page string="Items" name = "items">
+                                <field name="items_lines_ids">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="price_unit"
+                                               attrs="{'column_invisible': [('parent.hide_sales_price', '=', True)]}"/>
+                                        <field name="quantity"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="product_id"/>
+                                            <field name="price_unit"
+                                                   attrs="{'column_invisible': [('parent.hide_sales_price', '=', True)]}"/>
+                                            <field name = "quantity"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+     </record>
+
+    <record id="view_hotel_appointment_search" model="ir.ui.view">
+            <field name="model">hotel.appointment.search</field>
+            <field name="model">hotel.appointment</field>
+            <field name="arch" type="xml">
+                <search>
+
+                </search>
+            </field>
+     </record>
+
+
+     <record id = "action_hotel_appointment" model = "ir.actions.act_window">
+        <field name = "name">Appointments</field>
+        <field name = "type">ir.actions.act_window</field>
+        <field name = "res_model">hotel.appointment</field>
+        <field name = "view_mode">tree,form,activity</field>
+        <field name = "context">{}</field>
+        <field name = "help" type = "html">
+              <p class = "o_view_nocontent_smiling_face">
+                 Create Your First Appointment!
+              </p>
+        </field>
+     </record>
+
+     <menuitem id = "menu_appointment"
+             name = "Appointments"
+             action = "action_hotel_appointment"
+             parent = "menu_appointment_master"
+             sequence = "10"/>
+
+
+</odoo>

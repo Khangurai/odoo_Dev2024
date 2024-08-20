@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<odoo>
+    <record id="guest_tag_vip" model="guest.tag">
+        <field name="name">VIP</field>
+    </record>
+    <record id="guest_tag_kid" model="guest.tag">
+        <field name="name">Kid</field>
+    </record>
+    <record id="guest_tag_adult" model="guest.tag">
+        <field name="name">Adult</field>
+    </record>
+    <record id="guest_tag_mr" model="guest.tag">
+        <field name="name">Mr</field>
+        <field name="active" eval="False"/>
+    </record>
+</odoo>
