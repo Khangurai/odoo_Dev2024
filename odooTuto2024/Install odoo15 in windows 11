@@ -1,0 +1,82 @@
+INSTALL odoo IN WINDOW
+
+download odoo community sourcode
+https://github.com/odoo/odoo/tree/15.0
+
+download git 
+
+open in odoo folder git bash
+
+to open vscode git bash
+ 
+code .
+
+follow by this instruction
+https://www.surekhatech.com/blog/how-to-install-odoo-in-windows
+
+if you forget postgres password
+https://www.youtube.com/watch?v=wfxrRxzm8jY
+
+in pgadmin
+create database 
+create login and role
+select owner odoo
+default postgres port 5432
+
+add path git and postgres in system environment
+
+to check postgres and git version in git bash
+
+psql --version
+git --version
+
+
+to install pyenv in powershell
+
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
+if error,
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+pyenv install --list
+
+to check install pyenv python 
+
+pyenv versions
+
+pyenv install 3.7.9
+
+first in C to set>>
+
+python global 3.7.9
+
+next time check > 
+
+python --version
+
+in cd path odoo folder
+
+python -m venv venv3.7.9
+
+.\venv\Scripts\activate
+
+python --version
+
+pip install setuptools wheel
+
+pip install -r requirements.txt
+
+python odoo-bin -r db_user -w db_password --addons-path=addons -d demo_db
+
+db_user >>odoo
+db_password>odoo
+default db_port >> 8069
+
+next step
+
+localhost:8069
+
+finally you'll feel GOD.
+
+change odoo config
+https://www.cybrosys.com/blog/analysis-of-conf-file-parameters-in-the-odoo-16

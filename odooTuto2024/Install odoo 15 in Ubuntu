@@ -1,0 +1,124 @@
+mkdir -p ~/Templates/Text
+cd ~/Templates/Text
+touch document
+
+1- Install Pycharm
+
+sudo apt update
+ 
+2- Install Git "https://linuxize.com/post/how-to-install-git-on-ubuntu-20-04/"
+sudo apt install git
+
+3- Install Pip https://linuxize.com/post/how-to-install-pip-on-ubuntu-20.04/
+sudo apt install python3-pip
+
+
+4- Install Node.js
+
+sudo apt install nodejs npm
+
+5-install Python head libraries
+
+sudo apt install git python3-pip build-essential wget python3-dev python3-venv \
+python3-wheel libfreetype6-dev libxml2-dev libzip-dev libldap2-dev libsasl2-dev \
+python3-setuptools node-less libjpeg-dev zlib1g-dev libpq-dev \
+libxslt1-dev libldap2-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev \
+liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev
+
+6- install PostgreSQL : https://www.postgresql.org/download/linux/ubuntu/
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+sudo apt-get update
+
+sudo apt-get -y install postgresql
+
+ 
+7- install Pgadmin : https://www.pgadmin.org/download/pgadmin-4-apt/
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+sudo apt install pgadmin4
+
+
+8- Reset the Postgres password for created Postgres server 
+: https://stackoverflow.com/questions/12720967/how-can-i-change-a-postgresql-user-password
+ 
+ 
+#sudo -u user_name psql
+ db_name
+sudo -u postgres psql postgres
+ 
+#password for user 
+ALTER USER postgres WITH PASSWORD 'odoo';
+
+/q
+ 
+ #create a new user on pgadmin
+ 
+9- install Installing wkhtmltopdf    go to ERP Folder
+
+https://drive.google.com/file/d/1mBiQqXXMpDpcpPWRN_TUAEZYXuOtkuN0/view?usp=drive_link
+
+sudo apt install ./wkh tab
+
+
+10- clone odoo 
+
+git clone https://github.com/odoo/odoo.git --depth 1 --branch 15.0
+
+
+11- install paython venv 
+
+python3 -m venv odoo-venv
+
+source odoo-venv/bin/activate
+
+pip3 install wheel
+
+pip3 install -r odoo/requirements.txt
+
+deactivate
+
+12- Create a configuration file  "odoo15.conf"
+
+[options]
+; This is the password that allows database operations:
+admin_passwd = odoo
+db_host = localhost
+db_port = 5432
+db_user = odoo
+db_password = odoo
+addons_path = ~~~~~~~~/addons
+http_port = 8069
+
+13- install Odoo15 service
+
+sudo nano /etc/systemd/system/odoo15.service
+
+[Unit]
+Description=Odoo15
+Documentation=http://www.odoo.com
+
+[Service]
+Type=simple
+User=akk
+ExecStart=/home/akk/ERP/odoo/odoo-venv/bin/python3 /home/akk/ERP/odoo/odoo/odoo-bin -c /home/akk/ERP/odoo/odoo15.conf
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable --now odoo15
+
+sudo systemctl status odoo15
+
+Go to browser
+ localhost:8069
+
+sudo systemctl stop --now odoo15
