@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_estate_property_form_inherit" model="ir.ui.view">
+            <field name="name">estate.property.form.inherit</field>
+            <field name="model">estate.property</field>
+            <field name="inherit_id" ref="estate.view_estate_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/field[@name='state']" position="attributes">
+<!--                    <attribute name="invisible">1</attribute>-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

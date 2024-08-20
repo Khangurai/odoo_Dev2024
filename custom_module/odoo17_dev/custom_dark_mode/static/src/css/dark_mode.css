@@ -1,0 +1,12 @@
+/* dark_mode.css */
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.navbar, .oe_kanban_view {
+    background-color: #1e1e1e;
+}
+
+/* Add more styles as needed */
