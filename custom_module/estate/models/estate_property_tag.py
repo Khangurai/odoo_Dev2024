@@ -13,3 +13,4 @@ class EstatePropertyTag(models.Model):
         ('name', 'unique(name)', 'Property tag name must be unique.'),
 
     ]
+
