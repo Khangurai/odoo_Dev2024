@@ -111,7 +111,8 @@
                                 <field name="is_accepted" invisible="1"/>
                                 <field name="offer_ids" readonly="is_accepted">
                                     <tree decoration-success="status == 'accepted'"
-                                          decoration-danger="status == 'refused'">
+                                          decoration-danger="status == 'refused'"
+                                          editable="bottom">
                                         <field name="price"/>
                                         <field name="partner_id"/>
                                         <field name="validity"/>
