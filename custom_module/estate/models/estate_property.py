@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
+# add_function = lambda x, y: x + y
 
 class EstateProperty(models.Model):
     _name = "estate.property"
@@ -49,6 +50,17 @@ class EstateProperty(models.Model):
     offer_ids = fields.One2many('estate.property.offer', 'property_id', string='Offers')
 
     min_date = fields.Date(string="Min Date", compute='_compute_min_date', store=True)
+
+    is_accepted = fields.Boolean(string="Is Accepted", compute="_compute_is_accepted")
+
+    def _compute_is_accepted(self):
+        # add_function(1,2)
+        for rec in self:
+            rec.is_accepted = bool(rec.offer_ids.filtered(lambda x: x.status == 'accepted'))
+        # for rec in self:
+        #     accept_list =[]
+        #     if rec.status== 'accepted':
+        #         accept_list.append(rec)
 
     @api.depends('create_date')
     def _compute_min_date(self):

@@ -108,7 +108,8 @@
                                 </group>
                             </page>
                             <page string="Offers">
-                                <field name="offer_ids">
+                                <field name="is_accepted" invisible="1"/>
+                                <field name="offer_ids" readonly="is_accepted">
                                     <tree decoration-success="status == 'accepted'"
                                           decoration-danger="status == 'refused'">
                                         <field name="price"/>
@@ -116,9 +117,9 @@
                                         <field name="validity"/>
                                         <field name="date_deadline"/>
                                         <button type="object" name="action_accept" icon="fa-solid fa-check text-success"
-                                                invisible="status"/>
+                                                invisible="status =='accepted'"/>
                                         <button type="object" name="action_refuse" icon="fa-solid fa-times text-danger"
-                                                invisible="status"/>
+                                                invisible="status =='accepted'"/>
                                         <field name="status" string="Status"/>
 <!--                                               decoration-success="status == 'accepted'"-->
 <!--                                               decoration-danger="status == 'refused'"-->
