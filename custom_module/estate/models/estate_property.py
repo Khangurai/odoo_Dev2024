@@ -54,10 +54,9 @@ class EstateProperty(models.Model):
     is_accepted = fields.Boolean(string="Is Accepted", compute="_compute_is_accepted")
 
     def _compute_is_accepted(self):
-        # add_function(1,2)
+        # add_function(1,2)pip
         for rec in self:
             rec.is_accepted = bool(rec.offer_ids.filtered(lambda x: x.status == 'accepted'))
-        # for rec in self:
         #     accept_list =[]
         #     if rec.status== 'accepted':
         #         accept_list.append(rec)
@@ -89,6 +88,7 @@ class EstateProperty(models.Model):
         self.state = 'new'
 
     def action_offer_received(self):
+        import pdb; pdb.set_trace()
         self.state = 'offer_received'
 
     def action_offer_accepted(self):
