@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import datetime
+from dateutil import relativedelta
 from odoo.exceptions import ValidationError
 
 try:
@@ -31,9 +32,15 @@ try:
             #         rec.state = 'ca ncel'
             #     else:
             #         raise UserError("No appointment selected.")
-            if self.appointment_id.booking_date == fields.Date.today():
+            cancel_days = self.env['ir.config_parameter'].sudo().get_param('hotel_B.cancel_days')
+            allowed_date = self.appointment_id.booking_date - relativedelta.relativedelta(days=int(cancel_days))
+            if allowed_date < fields.Date.today():
                 raise ValidationError(_('Sorry, cancellation is not allowed on the same day of booking date'))
-            return
+            self.appointment_id.state = 'cancel'
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'reload',
+            }
 
 except Exception as e:
     print(e)

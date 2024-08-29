@@ -5,4 +5,6 @@ access.appointment.items.lines,access_appointment_items_lines,hotel_B.model_appo
 access.guest.tag,access_patient_tag,hotel_B.model_guest_tag,base.group_user,1,1,1,1
 access.cancel.appointment.wizard,access_cancel_appointment_wizard,hotel_B.model_cancel_appointment_wizard,base.group_user,1,1,1,1
 access.playground.item.wizard,access_playground_item_wizard,hotel_B.model_playground_item,base.group_user,1,1,1,1
+access.hotel.operation,access_hotel_operation,hotel_B.model_hotel_operation,base.group_user,1,1,1,1
+
 

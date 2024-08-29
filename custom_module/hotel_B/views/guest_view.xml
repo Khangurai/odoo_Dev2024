@@ -8,7 +8,8 @@
                 <tree>
                     <field name="name" string = "Guest Name"/>
                     <field name="ref"/>
-                    <field name="age"/>
+                    <field name="age" avg="Average Age"/>
+                    <field name="appointment_count" sum="Total Appointments"/>
                     <field name="gender"/>
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 </tree>
@@ -21,19 +22,27 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div>
+                        <a></a>
+                        <div>
+                            <strong>Today is Birthday!</strong>
+                        </div>
+                        <div>Wish<field name="name" readonly="1"/>
+                        </div>
+                    </div>
                     <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <group>
                             <field name="name"/>
                             <field name="appointment_id"/>
-                            <field name="ref"/>
+                            <field name="ref" readonly="1" force_save="1"/>
                             <field name="date_of_birth"/>
                             <field name="appointment_count"/>
                         </group>
                         <group>
                             <field name="age"/>
-                            <field name="gender"/>
-                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="gender" widget="radio"/>
+                            <field name="tag_ids" widget="many2many_checkboxes" options="{'color_field': 'color'}"/>
                             <field name="active" invisible="1"/>
                         </group>
                     </group>

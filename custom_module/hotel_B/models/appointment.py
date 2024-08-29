@@ -32,6 +32,8 @@ class HotelAppointment(models.Model):
     items_lines_ids = fields.One2many('appointment.items.lines', 'appointment_id', string="Items Lines")
     hide_sales_price = fields.Boolean(string="Hide Sales Price")
 
+    operation_id = fields.Many2one(comodel_name='hotel.operation', string="Operation")
+
     @api.onchange('guest_id')
     def _onchange_guest_id(self):
         self.ref = self.guest_id.ref

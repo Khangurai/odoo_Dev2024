@@ -23,8 +23,9 @@
         'data/guest.tag.csv',
         'data/guest_tag_data.xml',
         'data/sequence_data.xml',
-        'views/playground_view.xml'
-
+        'views/playground_view.xml',
+        'views/res_config_settings_views.xml',
+        'views/operation_view.xml'
     ],
     'demo': [],
     'application': True,

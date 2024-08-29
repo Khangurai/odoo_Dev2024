@@ -78,6 +78,8 @@
                                 <field name="ref" />
                                 <field name="receptionist_id" widget = "many2one_avatar"/>
                                 <field name="booking_date" help="Date of Booking."/>
+                                <field name="operation_id" help="Operation"/>
+
                             </group>
                             <group>
                                 <field name="hide_sales_price" groups="base.group_no_one"/>
