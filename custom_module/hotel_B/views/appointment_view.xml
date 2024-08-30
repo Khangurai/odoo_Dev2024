@@ -39,6 +39,7 @@
                            decoration-danger="state=='cancel'"
                            decoration-muted="state=='draft'"
                            widget = "badge"/>
+                    <field name = "progress" widget="percentpie"/>
                 </tree>
             </field>
      </record>

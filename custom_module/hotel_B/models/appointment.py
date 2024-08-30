@@ -1,3 +1,4 @@
+import random
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 import logging
@@ -33,6 +34,21 @@ class HotelAppointment(models.Model):
     hide_sales_price = fields.Boolean(string="Hide Sales Price")
 
     operation_id = fields.Many2one(comodel_name='hotel.operation', string="Operation")
+    progress = fields.Integer(string="Progress", compute='_compute_progress')
+
+    @api.depends('state')
+    def _compute_progress(self):
+        for rec in self:
+            if rec.state == 'draft':
+                progress = random.randrange(0,25)
+            elif rec.state == 'confirm':
+                progress = random.randrange(25,75)
+            elif rec.state == 'done':
+                progress = 100
+            else:
+                progress = 0
+            rec.progress = progress
+
 
     @api.onchange('guest_id')
     def _onchange_guest_id(self):
