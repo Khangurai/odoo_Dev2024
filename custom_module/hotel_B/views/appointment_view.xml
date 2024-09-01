@@ -53,6 +53,7 @@
                         <button name = "action_draft" string = "Reset to Draft" type = "object" states = "cancel"/>
                         <button name = "action_confirm" string = " Draft Confirm" class = "oe_highlight" type = "object" states = "draft"/>
                         <button name = "action_done" string = "Mark As Done" class = "oe_highlight" type = "object" states = "confirm,draft"/>
+                        <button name = "action_share_whatsapp" string = "Share In Whatsapp" class = "oe_highlight" type = "object" icon="fa-whatsapp"/>
 <!--                        <button name = "action_cancel" string = "Cancel" type = "object" states = "confirm,done"/>-->
                         <button name = "%(hotel_B.action_cancel_appointment)d" string = "Cancel"
                                 context="{'default_reason':'Test', 'hide_appointment': 1 }"
@@ -91,11 +92,18 @@
                                         groups="base.group_no_one"
                                         confirm="Are you sure to execute python code?"
                                         class="oe_highlight"/>
+                                <button name="action_notification" string="Notification Button" type="object"
+                                        groups="base.group_no_one"
+                                        class="oe_highlight"/>
                                 <button name="%(hotel_B.action_hotel_guest)d" string="Action Button"
                                         help="On clicking this button, you'll be redirected to guest records."
                                         groups="base.group_no_one"
-
-                                        confirm="Are you sure to open the guest action?"                                       type="action" class="oe_highlight"/>
+                                        confirm="Are you sure to open the guest action?"
+                                        type="action" class="oe_highlight"/>
+                                <button name="action_YT" string="Youtube"
+                                        groups="base.group_no_one"
+                                        confirm="Are you sure to open YT?"
+                                        type="object" class="oe_highlight" icon="fa-youtube"/>
                             </group>
                         </group>
                         <notebook>

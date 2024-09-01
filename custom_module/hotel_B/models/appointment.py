@@ -54,8 +54,25 @@ class HotelAppointment(models.Model):
     def _onchange_guest_id(self):
         self.ref = self.guest_id.ref
 
+    def action_notification(self):
+        # message = 'Button click successful'
+        action = self.env.ref('hotel_B.action_hotel_appointment')
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Click to open the guest record'),
+                'message': '%s',
+                'links': [{
+                    'label': self.guest_id.name,
+                    'url': f'#action={action.id}&id={self.guest_id.name}&model=hotel.appointment'
+                }],
+                'sticky': False,
+            }
+        }
+
     def action_test(self):
-        print("Button clicked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        # print("Button clicked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         return {
             'effect': {
                 'fadeout': 'slow',
@@ -63,6 +80,16 @@ class HotelAppointment(models.Model):
                 'type': 'rainbow_man',
             }
         }
+
+    def action_YT(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': 'https://www.youtube.com/watch?v=6-cNMfeEo9I',
+        }
+
+    def action_share_whatsapp(self):
+        return
 
     def action_draft(self):
         print(self.env.context.get('active_id'))
