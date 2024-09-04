@@ -21,6 +21,7 @@ class HotelGuest(models.Model):
     marital_status = fields.Char(string='Marital Status')
     partner_name = fields.Char(string='Partner Name')
     is_visible = fields.Boolean(compute='_compute_is_visible')
+
     def _compute_appointment_count(self):
         for rec in self:
             rec.appointment_count = self.env['hotel.appointment'].search_count([('guest_id', '=', rec.id)])
