@@ -157,7 +157,118 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
+                                <h3 class="py-3">Looping</h3>
+                                <table class="table table-striped table-sm border">
+                                    <tbody>
+                                        <tr>
+                                            <th>Static</th>
+                                            <td>
+                                                <ul>
+                                                    <li t-foreach="[1,2,3]" t-as="number">
+                                                        <span t-out="number"/>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Function</th>
+                                            <td>
+                                                <ul>
+                                                    <t t-set="list_length" t-value="0"/>
+                                                    <li t-foreach="range(10)" t-as="number">
+                                                        <span t-out="number_index + 1"/>
+                                                        <span class="text-success" t-if="number_first">First Element</span>
+                                                        <span class="text-success" t-if="number_last">Last Element </span>
+                                                        <span t-if="number_odd">Odd Element</span>
+                                                        <span class="text-muted" t-if="number_even">Odd Element</span>
+                                                        <t t-set="list_length" t-value="number_size"/>
+                                                    </li>
+                                                </ul>
+
+                                                <p>List length:<span t-out="list_length"/></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Model</th>
+                                            <td>
+                                                <ul>
+                                                    <li t-foreach="model" t-as="field">
+                                                        <span t-out="field.name"/>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+
+                            <div class="tab-pane fade show" id="attributes-tab-pane" role="tabpanel"
+                                 aria-labelledby="attributes-tab" tabindex="0">
+                                <h3 class="py-3">Attributes</h3>
+                                <table class="table table-striped table-sm border">
+                                    <tbody>
+                                        <tr>
+                                            <th>Expression</th>
+                                            <td>
+                                                <p>Website:
+                                                    <a t-att-href="user_id.partner_id.website">
+                                                        <span t-out="user_id.partner_id.website"/>
+                                                    </a>
+                                                </p>
+                                                <p>Email:
+                                                    <a t-att-href="'mailto:%s' % user_id.partner_id.email">
+                                                        <span t-out="user_id.partner_id.email"/>
+                                                    </a>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Literals</th>
+                                            <td>
+                                                <p>Email:
+                                                    <a t-attf-href="mailto:{{ user_id.partner_id.email }}">
+                                                        <span t-out="user_id.partner_id.email"/>
+                                                    </a>
+                                                </p>
+                                                <p>Email:
+                                                    <a t-attf-href="mailto:#{ user_id.partner_id.email }">
+                                                        <span t-out="user_id.partner_id.email"/>
+                                                    </a>
+                                                </p>
+
+                                                <button t-attf-class="btn {{ 'btn-info' if request.session.uid else 'btn-danger'}}">Status</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Mapping</th>
+                                            <td>
+                                                <p>
+                                                    Website:
+                                                    <a t-att="{
+                                                        'href': user_id.partner_id.website,
+                                                        'title': '%s Website' % user_id.partner_id.name
+                                                    }">
+                                                        <span t-out="user_id.partner_id.website"/>
+                                                    </a>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pairing</th>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled="disabled" t-att="[('checked' if request.session.uid else ''), 'checked']"/>
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    Is logged-in?
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
                 </div>
