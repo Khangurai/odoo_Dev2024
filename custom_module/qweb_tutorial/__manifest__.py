@@ -8,7 +8,7 @@
     'category': 'Website',
     'depends' : ['web', 'website'],
     'data': [
-        'views/for_python_templates.xml',
+        'views/1.xml',
     ],
     'installable': True,
     'application': True,

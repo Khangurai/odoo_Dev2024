@@ -32,4 +32,4 @@ class QwebTutorials(http.Controller):
             'markup': Markup('<h3>This is an HTML value!</h3> %s')
                       % 'Added by attacker <script>alert("Do something!!")</script>',
         }
-        return http.request.render("qweb_tutorial.somePythonTemplate", data)
+        return http.request.render("qweb_tutorial.TestPython1", data)
