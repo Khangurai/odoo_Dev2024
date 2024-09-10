@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="vaccine_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                <center>
+                    <h1>Vaccine</h1>
+                </center>
+                <div>
+                    <strong>Date :</strong>
+<!--                    <span t-esc="date"/>-->
+                </div>
+                <div>
+                    <strong>Patient's Name :</strong>
+<!--                    <span t-esc="patient_id"/>-->
+                </div>
+                <div>
+                    <strong>Doctor Name :</strong>
+<!--                    <span t-esc="doctor_name"/>-->
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Patient</th>
+                        <th>Vaccine</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                        <th>Dose</th>
+                    </tr>
+                    <tr t-foreach="docs.hospital_vaccination_ids" t-as="line" style="text-align:center">
+                        <td>
+                            <span t-esc="line['patient_id']['name']"/>
+                        </td>
+                        <td>
+<!--                            <span t-esc="line['normal']"/>-->
+                        </td>
+                        <td>
+<!--                            <span t-esc="line['uom_id']"/>-->
+                        </td>
+                        <td>
+<!--                            <span t-esc="line['result']"/>-->
+                        </td>
+                        <td>
+<!--                            <t t-esc="line['currency']"/>-->
+<!--                            <span t-esc="line['cost']"/>-->
+                        </td>
+                    </tr>
+                </table>
+            </t>
+            </t>
+        </template>
+    </data>
+</odoo>

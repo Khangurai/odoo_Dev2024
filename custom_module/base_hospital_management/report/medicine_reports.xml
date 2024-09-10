@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Define the custom paper format -->
+        <record id="medical_report_paperformat" model="report.paperformat">
+            <field name="name">Vaccine Report</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">25</field>
+            <field name="page_width">15</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">1</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">1</field>
+            <field name="disable_shrinking" eval="True"/>
+        </record>
+
+        <!--Medicine report -->
+        <record id="action_report_vaccine" model="ir.actions.report">
+            <field name="name">Vaccine</field>
+            <field name="model">res.partner</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">base_hospital_management.vaccine_report</field>
+            <field name="report_file">base_hospital_management.vaccine_report</field>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

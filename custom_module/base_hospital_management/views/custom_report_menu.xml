@@ -1,0 +1,16 @@
+<odoo>
+    <!-- Add a button in Sale Order form to trigger the custom report -->
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.custom.report</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_confirm']" position="after">
+                <button name="%(custom_module.action_report_custom)d"
+                        string="Print Custom Report"
+                        type="action"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
