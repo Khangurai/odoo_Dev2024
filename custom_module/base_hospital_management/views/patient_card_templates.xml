@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!--        Patient card template-->
+    <!--Patient card template-->
     <template id="patient_card_form">
         <t t-call="website.layout">
             <div id="patient_form">

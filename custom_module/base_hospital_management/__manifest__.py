@@ -79,6 +79,8 @@
         "views/lab_test_line_views.xml",
         "report/res_partner_reports.xml",
         "report/lab_test_line_reports.xml",
+        "report/medicine_reports.xml",
+        "report/medicine_reports_template.xml",
     ],
     "demo": ["demo/hr_job_demo.xml"],
     "assets": {

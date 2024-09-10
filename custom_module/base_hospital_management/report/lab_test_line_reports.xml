@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!--    Patient lab test report action-->
+    <!--Patient lab test report action-->
     <record id="action_report_patient_lab_tests" model="ir.actions.report">
         <field name="name">Patient Lab Tests</field>
         <field name="model">lab.test.line</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">
-            base_hospital_management.report_patient_lab_tests
-        </field>
-        <field name="report_file">
-            base_hospital_management.report_patient_lab_tests
-        </field>
+        <field name="report_name">base_hospital_management.report_patient_lab_tests</field>
+        <field name="report_file">base_hospital_management.report_patient_lab_tests</field>
         <field name="binding_model_id" ref="model_lab_test_line"/>
         <field name="binding_type">report</field>
     </record>
