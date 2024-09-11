@@ -25,6 +25,8 @@ Long description of module's purpose
         # 'security/ir.model.access.csv',
         'views/sale_order_view.xml',
         'views/invoice.xml',
+        'report/sale_order_report_templates.xml',
+        'report/invoice_order_report_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
