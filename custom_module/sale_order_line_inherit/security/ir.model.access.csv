@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_order_line_inherit_sale_order_line_inherit,sale_order_line_inherit.sale_order_line_inherit,model_sale_order_line_inherit_sale_order_line_inherit,base.group_user,1,1,1,1
+access_sale_order_team_group,sale.order.team.group,sale.model_sale_order,sale_team_document_group,1,0,0,0
+access_sale_order_line_group,sale.order.line.team.group,sale.model_sale_order_line,sale_team_document_group,1,0,0,0
