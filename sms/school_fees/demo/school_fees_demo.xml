@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<odoo>
+    <data noupdate="1">
+        <record id="demo_product_fees_1" model="product.product">
+            <field name="name">Educational Fees</field>
+            <field name="code">FEEEDU</field>
+            <field name="detailed_type">service</field>
+            <field name="list_price">4000.00</field>
+            <field name="categ_id" ref="school_fees.product_categ_fees"/>
+        </record>
+        <record id="demo_product_fees_2" model="product.product">
+            <field name="name">Library Fees</field>
+            <field name="code">FEELIB</field>
+            <field name="detailed_type">service</field>
+            <field name="list_price">2000.00</field>
+            <field name="categ_id" ref="school_fees.product_categ_fees"/>
+        </record>
+        <record id="demo_product_fees_3" model="product.product">
+            <field name="name">Laboratory Fees</field>
+            <field name="code">FEELAB</field>
+            <field name="detailed_type">service</field>
+            <field name="list_price">3000.00</field>
+            <field name="categ_id" ref="school_fees.product_categ_fees"/>
+        </record>
+
+        <!--Student Fees Structure Line-->
+        <record id="demo_student_fees_structure_line_1" model="student.fees.structure.line">
+            <field name="name">Educational Fees</field>
+            <field name="code">01</field>
+            <field name="type">month</field>
+            <field name="product_id" ref="school_fees.demo_product_fees_1"/>
+            <field name="amount">4000.00</field>
+        </record>
+        <record id="demo_student_fees_structure_line_2" model="student.fees.structure.line">
+            <field name="name">Library Fees</field>
+            <field name="code">02</field>
+            <field name="type">month</field>
+            <field name="product_id" ref="school_fees.demo_product_fees_2"/>
+            <field name="amount">2000.00</field>
+        </record>
+        <record id="demo_student_fees_structure_line_3" model="student.fees.structure.line">
+            <field name="name">Laboratory Fees</field>
+            <field name="code">03</field>
+            <field name="type">month</field>
+            <field name="product_id" ref="school_fees.demo_product_fees_3"/>
+            <field name="amount">3000.00</field>
+        </record>
+        <!-- Fees Structure Information -->
+        <record id="demo_student_fees_structure_1" model="student.fees.structure">
+            <field name="name">Student Fees Structure</field>
+            <field name="code">SFS</field>
+            <field eval="[(6,0,[ref('demo_student_fees_structure_line_1'), ref('demo_student_fees_structure_line_2'), ref('demo_student_fees_structure_line_3')])]" name="line_ids" />
+        </record>
+        <record id="demo_student_fees_structure_2" model="student.fees.structure">
+            <field name="name">External Student Fees Structure</field>
+            <field name="code">ESFS</field>
+            <field eval="[(6,0,[ref('demo_student_fees_structure_line_1'), ref('demo_student_fees_structure_line_2')])]" name="line_ids"/>
+        </record>
+        <!--Student fees Registration -->
+         <record id="demo_student_fees_registration_1" model="student.fees.register">
+            <field name="name">Exam Fees</field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="fees_structure" ref="school_fees.demo_student_fees_structure_2"/>
+            <field name="standard_id" ref="school.demo_standard_standard_2"/>
+         </record>
+         <record id="demo_student_fees_registration_2" model="student.fees.register">
+            <field name="name">Exam Fees</field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="fees_structure" ref="school_fees.demo_student_fees_structure_2"/>
+            <field name="standard_id" ref="school.demo_standard_standard_1"/>
+         </record>
+
+         <function model="student.fees.register" name="fees_register_confirm"
+         context="{'is_demo_record': 'true'}" eval="[[ref('demo_student_fees_registration_1'), ref('demo_student_fees_registration_2')]]"/>
+    </data>
+</odoo>
